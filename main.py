@@ -114,7 +114,7 @@ def get_complete_lyrics(lyrics_url):
     verses = lyrics.split("\n")
     for verse in verses:
         print(verse)
-        time.sleep(0.5)
+        time.sleep(0.2)
 
 
 def play_on_youtube(song_link):
