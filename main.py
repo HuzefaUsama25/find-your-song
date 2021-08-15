@@ -29,16 +29,33 @@ def song_info_from_lyrics(lyrics):
     return song_links
 
 
-def list_songs(song_links):
+def user_song_of_choice(song_links):
     song_index = 0
     for song_link in song_links:
 
         info_song_link = song_link.split("/")
+        song_artist = info_song_link[2].replace("-", " ")
+        song_name = info_song_link[3].replace("-", " ")
+        info_string = f"{song_index} - {song_artist} - {song_name}"
 
-        # /song/Franz-Ferdinand/Auf-Achse/1027717
+        if len(str(song_index)) == 1:
+            print(f"0{info_string}")
 
-        song_artist = info_song_link[1]
-        song_name = info_song_link[2]
-        print(f"{song_index} - {song_artist} - {song_name}")
+        else:
+            print(info_string)
 
         song_index += 1
+
+    while True:
+        try:
+            user_choice_of_song = int(input("Song Index: "))
+            user_song_url_raw = song_links[user_choice_of_song]
+            break
+
+        except Exception as e:
+            print("\nenter the index of song you want to listen")
+            continue
+
+    user_song_url = f"https://songsear.ch/q{user_song_url_raw}"
+
+    return user_song_url
